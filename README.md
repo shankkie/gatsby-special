@@ -1,3 +1,9 @@
+---
+title: Gatsby App for CC!
+slug: gatsby-CC
+author: Shankar Veerakandhan
+---
+
 # Gatsby Special App
 
 
@@ -17,3 +23,38 @@ gatsby-plugin-react-helmet: server side rendering with helmet
 ### MDX
 - is a way to enable using React Components inside of markdown.
 - `npm i gatsby-plugin-mdx @mdx-js/mdx @mdx-js/react` needs to be installed to make mdx up and running
+- inside the config file, 
+```
+    { 
+        resolve: 'gatsby-plugin-mdx', 
+        options: {
+            defaultLayouts: {
+                default: './src/components/layout.js'
+            }
+        }
+    }
+```
+
+### Writing post in mdx
+- install `npm i gatsby-source-filesystem`
+
+gatsby file system is a way to use local files as part of GraphQL data layer.
+
+### graphql query for getting single mdx
+```
+query($slug: String!) {
+  mdx( frontmatter: { slug: { eq: $slug}}) {
+    frontmatter {
+      slug
+      author
+    }
+  }
+}
+```
+
+query Variables 
+```
+{
+  "slug": "second-post"
+}
+```
